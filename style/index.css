@@ -114,6 +114,7 @@ body {
 #savedSlidesContainer p{
     width : 100%;
     height : auto;
+    font-weight : normal;
 }
 
 .saved-slide {
