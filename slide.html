@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>The Codeup Show Slide</title>
+    <link rel="stylesheet" href="./style/index.css">
+    <script src="./script/slide.js" defer></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jspdf/2.5.1/jspdf.umd.min.js"></script>
+</head>
+
+<body>
+    <div class="slide-container">
+        <div class="controls">
+            <span>Font Size </span>
+            <input type="number" id="fontSizeInput" placeholder="Enter Font Size (px)" />
+            <button id="updateTextBtn">Update Text</button>
+        </div>
+        <div class="image-container">
+            <img src="./codeupShow.png" alt="Slide Image" id="slideImage">
+            <textarea id="textInput" rows="3" placeholder="Type here..."></textarea>
+        </div>
+        <button id="saveSlideBtn">Save</button>
+    </div>
+</body>
+</html>
