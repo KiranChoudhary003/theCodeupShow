@@ -9,7 +9,7 @@ function checkForBrowserRestart() {
     if (!existingSession) {
         console.log("Browser restarted, clearing localStorage...");
         localStorage.removeItem("savedSlides");
-        sessionStorage.setItem(sessionKey, "active"); 
+        sessionStorage.setItem(sessionKey, "active");
     }
 }
 
@@ -47,7 +47,7 @@ function saveSlidesToLocalStorage() {
 }
 
 window.onload = function () {
-    checkForBrowserRestart(); 
+    checkForBrowserRestart();
 
     if (localStorage.getItem("savedSlides")) {
         sessionStorage.setItem("savedSlides", localStorage.getItem("savedSlides"));
@@ -66,26 +66,26 @@ window.onload = function () {
         let pdf = new jsPDF({
             orientation: "landscape",
             unit: "pt",
-            format: [1440, 810] 
+            format: [1440, 810]
         });
 
         for (let index = 0; index < savedSlides.length; index++) {
             const slide = savedSlides[index];
 
             try {
-                const img = await loadImage(slide); 
+                const img = await loadImage(slide);
 
                 const pageWidth = pdf.internal.pageSize.getWidth();
                 const pageHeight = pdf.internal.pageSize.getHeight();
 
-                console.log("Page Width:", pageWidth);  
-                console.log("Page Height:", pageHeight); 
+                console.log("Page Width:", pageWidth);
+                console.log("Page Height:", pageHeight);
 
                 let imgWidth = pageWidth
                 let imgHeight = pageHeight
 
                 const x = 0
-                const y = 0 
+                const y = 0
 
                 if (index > 0) {
                     pdf.addPage();
@@ -94,15 +94,17 @@ window.onload = function () {
                 pdf.addImage(img, "JPEG", x, y, imgWidth, imgHeight);
 
                 const fontSize = slide.fontSize ? slide.fontSize : 40;
-                pdf.setFont("helvetica", "bold");
+                pdf.setFont("helvetica");
                 pdf.setFontSize(fontSize);
                 pdf.setTextColor(255, 255, 255);
 
+                const maxTextWidth = pageWidth * 0.8;
+                const wrappedText = pdf.splitTextToSize(slide.text, maxTextWidth);
                 const textWidth = pdf.getTextWidth(slide.text);
-                const textX = pageWidth / 2 - textWidth / 2;
-                const textY = y + imgHeight / 2;
+                const textX = pageWidth / 2;
+                const textY = y + imgHeight / 2 - (wrappedText.length * fontSize) / 2;
 
-                pdf.text(slide.text, textX, textY);
+                pdf.text(wrappedText, textX, textY, { align: "center", baseline: "middle" });
 
             } catch (error) {
                 console.error("Error processing slide:", error);

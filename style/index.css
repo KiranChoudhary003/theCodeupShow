@@ -1,4 +1,3 @@
-/* Reset Styles */
 * {
     margin: 0;
     padding: 0;
@@ -112,6 +111,10 @@ body {
     width : 1080px;
     height : auto;
 }
+#savedSlidesContainer p{
+    width : 100%;
+    height : auto;
+}
 
 .saved-slide {
     position: relative;
@@ -180,14 +183,63 @@ body {
     padding: 5px 10px;
 }
 
-@media screen and (max-width: 600px) {
+@media screen and (max-width: 768px) {
+    #logo {
+        width: 300px;
+    }
+
+    .controls input {
+        width: 120px;
+    }
+
+    .image-container {
+        max-width: 100%;
+    }
+
     #textInput {
         font-size: 16px;
         padding: 8px;
+        width: 90%;
     }
-    
+
     #saveSlideBtn {
         font-size: 14px;
         padding: 6px 12px;
+    }
+
+    #savedSlidesContainer img {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 480px) {
+    #logo {
+        width: 250px;
+    }
+
+    .controls span {
+        font-size: 14px;
+    }
+
+    .controls input {
+        width: 100px;
+    }
+
+    .image-container {
+        max-width: 100%;
+    }
+
+    #textInput {
+        font-size: 14px;
+        padding: 6px;
+    }
+
+    #saveSlideBtn {
+        font-size: 12px;
+        padding: 5px 10px;
+    }
+
+    #savedSlidesContainer img {
+        width: 100%;
     }
 }
